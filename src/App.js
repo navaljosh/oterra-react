@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Landing from './scenes/Landing/index';
+import PassCodeLogin from './scenes/PasscodeLogin';
+import DetailsForm from './scenes/DetailsForm';
+import LanguageSelect from './scenes/LanguageSelect';
+import MainScene from './scenes/MainScene';
+import 'reactjs-popup/dist/index.css';
+import store from './store/store';
+import { Provider } from 'react-redux'
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Landing />,
+    },
+    {
+      path: '/login',
+      element: <PassCodeLogin />,
+    },
+    {
+      path: '/details',
+      element: <DetailsForm />,
+    },
+    {
+      path: '/lang',
+      element: <LanguageSelect />,
+    },
+    {
+      path: '/app',
+      element: <MainScene />,
+    },
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 

@@ -1,0 +1,50 @@
+.customSelectBox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid #8a8a8a;
+  border-radius: 8px;
+  overflow: hidden;
+  justify-content: flex-end;
+  padding: 15px 0 0 0;
+  box-sizing: border-box;
+  margin: 10px 0;
+  height: 62px;
+  label {
+    position: absolute;
+    // padding: 10px 20px;
+    box-sizing: border-box;
+    // color: #000000;
+    max-height: 56px;
+    color: rgb(138, 138, 138);
+    top: -3px;
+    z-index: 2;
+    font-size: 12px;
+    padding: 10px 20px;
+    width: auto;
+  }
+  .inputOptions {
+    // padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    background: #fff;
+    border-radius: 8px;
+    outline: 1px solid #E34125;
+    // transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    font-size: 17px;
+  }
+  .down {
+    width: 8px;
+    height: 8px;
+    border: 2px solid #000;
+    border-top: transparent;
+    border-left: transparent;
+    transform: rotate(45deg);
+  }
+}

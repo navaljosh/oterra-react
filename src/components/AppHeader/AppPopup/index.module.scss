@@ -1,0 +1,37 @@
+.appPopup {
+  color: #e34125;
+  .header {
+    font-weight: 700;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 75vh;
+    overflow: auto;
+
+    .appOption {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      .appIcon {
+        width: 80px;
+        aspect-ratio: 1;
+        > img {
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+      .appName {
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+  }
+}

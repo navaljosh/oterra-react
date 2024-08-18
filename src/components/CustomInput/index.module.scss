@@ -1,0 +1,29 @@
+.customInput {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid #8a8a8a;
+  border-radius: 8px;
+  overflow: hidden;
+  justify-content: flex-end;
+  padding: 15px 0 5px 0;
+  box-sizing: border-box;
+  margin: 10px 0;
+  label {
+    position: absolute;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    color: #000000;
+  }
+  input {
+    border: none;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-size: 17px;
+
+    &:focus-visible {
+      border: none;
+      outline: none;
+    }
+  }
+}

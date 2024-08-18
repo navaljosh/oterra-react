@@ -1,0 +1,44 @@
+.langSelect {
+  // background: url('../../assets/dummyBg.png') no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative;
+  .langOptions {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 70%;
+    .boxHeader {
+      padding: 20px;
+      box-sizing: border-box;
+      font-weight: 700;
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+  .nextBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > button {
+      border: none;
+      background: #e34125;
+      border-radius: 25px;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin: 20px;
+    }
+  }
+}

@@ -1,0 +1,95 @@
+.appHeader {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #e34125;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  .left,
+  .right {
+    cursor: pointer;
+    background: #fff;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    > img {
+      max-width: 21px;
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+  }
+  .appBtn {
+    height: 47px;
+    background-color: #fff;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    .down {
+      width: 10px;
+      height: 10px;
+      border: 2px solid #e34125;
+      border-left: transparent;
+      border-top: transparent;
+      transform: rotate(45deg) translate(20%, -50%);
+      margin-left: 10px;
+    }
+    .infoPopup {
+      position: absolute;
+      border-radius: 5px;
+      top: 150%;
+      font-size: 12px;
+      font-weight: 400;
+      color: #000;
+      text-align: center;
+      padding: 10px 10px;
+      box-sizing: border-box;
+      background: #fff;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      // backdrop-filter: blur(4px);
+      // -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      text-transform: capitalize;
+      &::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border: 10px solid #fff;
+        // background: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        transform: translate(-50%, 0px) rotate(45deg);
+        border-right: transparent;
+        border-bottom: transparent;
+      }
+    }
+  }
+}
