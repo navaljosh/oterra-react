@@ -1,12 +1,23 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import Landing from './scenes/Landing/index';
 import PassCodeLogin from './scenes/PasscodeLogin';
 import DetailsForm from './scenes/DetailsForm';
 import LanguageSelect from './scenes/LanguageSelect';
-import MainScene from './scenes/MainScene';
+import MainScene, { isObjectEmpty } from './scenes/MainScene';
 import 'reactjs-popup/dist/index.css';
 import store from './store/store';
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux';
+import LanguageScreen from './scenes/LanguageScreen';
+
+const ProtectedRoute = ({ element }) => {
+  const loggedUser = useSelector((appReducer) => appReducer.loggedUser) || {};
+  const isAuthenticated = !isObjectEmpty(loggedUser);
+  return isAuthenticated ? element : <Navigate to='/?lang' />;
+};
 
 function App() {
   const router = createBrowserRouter([
@@ -27,10 +38,15 @@ function App() {
       element: <LanguageSelect />,
     },
     {
+      path: '/langSelect',
+      element: <LanguageScreen />,
+    },
+    {
       path: '/app',
-      element: <MainScene />,
+      element: <ProtectedRoute element={<MainScene />} />,
     },
   ]);
+
   return (
     <Provider store={store}>
       <RouterProvider router={router} />

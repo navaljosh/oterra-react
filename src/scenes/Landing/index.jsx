@@ -1,21 +1,65 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { getText } from '../../languageTexts';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import landingTop from '../../assets/landingTop.png';
 import overlay from '../../assets/overlay.png';
+import oterra from '../../assets/oterra.png';
 import { ACTION_TYPES } from '../../store/actionTypes';
 import { useDispatch } from 'react-redux';
+import LanguageSelect from '../LanguageSelect';
 
 function Landing() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { search } = useLocation();
+  const [loading, setLoading] = useState(search !== '?logout');
+  const [showLang, setShowLang] = useState(false);
+  const [showLangPopup, setShowLangPopup] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowLang(true);
+      setTimeout(() => {
+        setShowLangPopup(true);
+      }, 2000);
+    }, 2000);
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <div
+          className={styles.fullScreen}
+          style={{
+            height: showLang ? `calc(100% - 520px)` : '100%',
+          }}
+        >
+          <img
+            src={oterra}
+            alt='OTERRA'
+            className={styles.brandLogo}
+            data-aos='fade-up'
+            data-aos-delay='50'
+            data-aos-duration='1000'
+          />
+        </div>
+        {showLangPopup ? (
+          <LanguageSelect onSelect={() => setLoading(false)} />
+        ) : null}
+        {showLang ? (
+          <img src={landingTop} alt='landingTop' className={styles.overlayBg} />
+        ) : null}
+      </>
+    );
+  }
+
   return (
     <div className={styles.landing}>
-      <div className={styles.top}>
+      <div className={styles.top} data-aos='fade-up'>
         <img src={landingTop} alt='bg' />
       </div>
-      <div className={styles.bottom}>
+      <div className={styles.bottom} data-aos='fade-down'>
         <img src={overlay} alt='overlay' className={styles.overlay} />
         <div className={styles.tagline}>
           {getText('building_a')}

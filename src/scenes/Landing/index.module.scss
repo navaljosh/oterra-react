@@ -1,3 +1,21 @@
+.fullScreen {
+  // height: 100%;
+  width: 100%;
+  background-color: #e34125;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease;
+  .brandLogo {
+    width: 50%;
+  }
+}
+
+.overlayBg {
+  width: 100vw;
+  max-width: 440px;
+}
+
 .landing {
   // background: url('../../assets/landingBg.png') no-repeat;
   // background-size: cover;

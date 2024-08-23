@@ -50,7 +50,29 @@ export const LANGUAGES = {
     potato_chip: 'Potato Chip',
     french_fries: 'French Fries',
     click_to_select_app: 'Click to select from full list of applications',
-    consumer_persona: 'Consumer Persona'
+    consumer_persona: 'Consumer Persona',
+    to_enjoy_ar_title:
+      'To enjoy the augmented reality experience, please follow these simple steps:',
+    maintain_good_lighting: 'Maintain good lighting',
+    avoid_direct_sunlight: 'Avoid direct sunlight',
+    avoid_cluttered_space: 'Avoid cluttered spaces',
+    keep_two_feet_distance: 'Keep at least 2 feet of distance',
+    consumers_who_find: 'Consumers who find',
+    appealing_text: `appealing also show great interest to trying out savory foods in this color. They are usually females and see themselves as very adventurous when it come to trying unfamiliar food. When it comes to priorities regarding food, they enjoy culinary exploration and trying new flavours, cuisines and ingredients.`,
+    top_5_emotions: 'Top five Emotions consumers associate with this color',
+    color_n_flovor: 'Color & Flavor Association',
+    color_intensity: 'Color Intensity',
+    consumer_rank: '30% of global consumers rank',
+    top_3_preferred_color:
+      'as their top 3 most preferred color that will interest them the most to buy if they are looking for a novel or experimental food experience.',
+    they_associate: 'They associate',
+    color_savory_food:
+      'colored savory food to beetroot, strawberry, chilli, red dragonfruit and raspberry flavours.',
+    get_full_access: 'Get Full Access',
+    contact_us: 'Contact Us',
+    logout: 'Logout',
+    choose_your_language: 'Choose your preferred language',
+    confirm: 'Confirm',
   },
   CMN: {
     building_a: '建设一个',
@@ -85,7 +107,7 @@ export const LANGUAGES = {
     savory_n_meat: '咸味和肉类',
     plant_based: '植物性',
     pet_food: '宠物食品',
-    none: '没有任何'
+    none: '没有任何',
   },
   SPA: {
     building_a: 'Construyendo un',
@@ -94,7 +116,8 @@ export const LANGUAGES = {
     enter_with_passcode: 'Ingrese con contraseña',
     enter_as_guest: 'Entra como invitado',
     welcome: 'Bienvenido !',
-    enter_passcode_to_access: 'Ingrese su dirección de correo electrónico y contraseña para acceder',
+    enter_passcode_to_access:
+      'Ingrese su dirección de correo electrónico y contraseña para acceder',
     fill_in_details:
       'Complete sus datos a continuación para obtener acceso a las opiniones de los consumidores y explorar el mundo de los colores naturales.',
     back: 'Atrás',
@@ -120,11 +143,11 @@ export const LANGUAGES = {
     savory_n_meat: 'Salados y Carnes',
     plant_based: 'A base de plantas',
     pet_food: 'Comida para mascotas',
-    none: 'Ninguno'
+    none: 'Ninguno',
   },
 };
 
 export const getText = (text) => {
   const lang = localStorage.getItem('language') || 'EN';
-  return LANGUAGES[lang][text];
+  return LANGUAGES[lang][text] ?? LANGUAGES['EN'][text]
 };

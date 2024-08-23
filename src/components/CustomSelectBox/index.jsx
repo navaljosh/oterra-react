@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss';
 import { getText } from '../../languageTexts';
 
@@ -14,16 +14,21 @@ const appsOptions = [
   'none',
 ];
 
-function CustomSelectBox({ label, options = appsOptions, multiSelect = true }) {
+function CustomSelectBox({
+  label,
+  options = appsOptions,
+  onSelect = () => {},
+}) {
   const divRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState([]);
-  const selectedOpts = [...selected];
+  const selectedOpts = selected.map((entry) => getText(entry));
   return (
     <>
       <div
         onClick={() => {
           setOpen(false);
+          onSelect(selectedOpts)
         }}
         style={{
           position: 'fixed',

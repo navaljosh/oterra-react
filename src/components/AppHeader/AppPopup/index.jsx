@@ -13,57 +13,78 @@ import potato_chip from '../../../assets/apps/potato_chip.png';
 import french_fries from '../../../assets/apps/french_fries.png';
 import { useDispatch } from 'react-redux';
 import { ACTION_TYPES } from '../../../store/actionTypes';
+import { updateVariantColor } from '../../../api/awsApi';
 
 const APPS = [
   {
     name: 'burger_bun',
+    displayName: 'Burgers',
     icon: burger_bun,
-    arLink: 'https://studio.onirix.com/projects/a75434af9a1f4ed08689fd55c4a9da88/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExMjY1LCJwcm9qZWN0SWQiOjMzODc4LCJyb2xlIjozLCJpYXQiOjE2NjY3ODAxMjJ9.W7IGyoX-pinIB7aVgcN9mpvTzu9kl9uC-qLLKP_9_D4&background=%23dbd5fb&preview=true&hide_controls=true&ar_button=true',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'dumpling',
+    displayName: 'Dumplings',
     icon: dumpling,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'puff_snacks',
+    displayName: 'Puffs',
     icon: puff_snacks,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'noodle',
+    displayName: 'Noodles',
     icon: noodle,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'burger_sauce',
+    displayName: 'Sauce',
     icon: burger_sauce,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'salad_dressing',
+    displayName: 'Salad',
     icon: salad_dressing,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'savory_dip',
+    displayName: 'Dips',
     icon: savory_dip,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'nugget',
+    displayName: 'Nuggets',
     icon: nugget,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'potato_chip',
+    displayName: 'Chips',
     icon: potato_chip,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
   {
     name: 'french_fries',
+    displayName: 'Fries',
     icon: french_fries,
-    arLink: 'https://player.onirix.com/exp/3OkQaz',
+    arLink:
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
   },
 ];
 
@@ -87,6 +108,8 @@ function AppPopup({ handleClose }) {
                   type: ACTION_TYPES.SELECTED_APP,
                   payload: entry,
                 });
+                // @TODO AKASH API
+                // updateVariantColor('yellow')
                 handleClose();
               }}
             >

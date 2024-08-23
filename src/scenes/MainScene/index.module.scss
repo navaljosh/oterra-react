@@ -1,0 +1,36 @@
+.contentInfo {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin: 20px;
+  .arIcon {
+    width: 47px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    > img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+  .points {
+    line-height: 18px;
+    font-size: 14px;
+    margin-top: 20px;
+    ul {
+      padding-left: 20px;
+      li {
+        margin: 10px 0;
+      }
+    }
+  }
+}
