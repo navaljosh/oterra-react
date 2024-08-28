@@ -12,6 +12,7 @@ import 'reactjs-popup/dist/index.css';
 import store from './store/store';
 import { Provider, useSelector } from 'react-redux';
 import LanguageScreen from './scenes/LanguageScreen';
+import FullAccessForm from './scenes/FullAccessForm';
 
 const ProtectedRoute = ({ element }) => {
   const loggedUser = useSelector((appReducer) => appReducer.loggedUser) || {};
@@ -44,6 +45,10 @@ function App() {
     {
       path: '/app',
       element: <ProtectedRoute element={<MainScene />} />,
+    },
+    {
+      path: '/fullAccess',
+      element: <FullAccessForm />,
     },
   ]);
 

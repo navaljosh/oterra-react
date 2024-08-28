@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './index.module.scss';
 import { getText } from '../../languageTexts';
 
@@ -18,31 +18,36 @@ function CustomSelectBox({
   label,
   options = appsOptions,
   onSelect = () => {},
+  multiSelect = true,
+  closeOnSelect = false,
 }) {
   const divRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState([]);
   const selectedOpts = selected.map((entry) => getText(entry));
+
   return (
     <>
       <div
-        onClick={() => {
+        onClick={(e) => {
           setOpen(false);
-          onSelect(selectedOpts)
+          onSelect(multiSelect ? selectedOpts : selectedOpts[0]);
         }}
         style={{
           position: 'fixed',
           height: open ? '100vh' : 0,
           width: open ? '100vw' : 0,
-          background: '#00000060',
+          // background: '#00000060',
           top: 0,
           left: 0,
+          zIndex: open ? 4 : -1,
         }}
       ></div>
       <div
         className={styles.customSelectBox}
         style={{
           overflow: open ? 'visible' : 'hidden',
+          zIndex: open ? 5 : 0,
         }}
         ref={divRef}
       >
@@ -50,8 +55,8 @@ function CustomSelectBox({
         <div
           className={styles.inputOptions}
           style={{
-            minHeight: open ? options.length * 40 : 40,
-            maxHeight: open ? options.length * 40 : 40,
+            // minHeight: open ? options.length * 40 : 40,
+            maxHeight: open ? 'max-content' : 40,
             padding: selected.length & !open ? '10px 20px' : '0 20px',
             outlineWidth: open ? 1 : 0,
           }}
@@ -59,7 +64,7 @@ function CustomSelectBox({
           {selected.length && !open ? (
             <>
               <div
-                onClick={() => setOpen(true)}
+                onClick={() => setOpen(!open)}
                 style={{
                   display: 'flex',
                   overflow: 'hidden',
@@ -79,32 +84,46 @@ function CustomSelectBox({
                 <div
                   onClick={() => {
                     if (!open) {
-                      setOpen(true);
+                      setOpen(!open);
                     } else {
                       if (index === options.length - 1) {
-                        setSelected(['None']);
+                        setSelected([options[options.length - 1]]);
+                        if (closeOnSelect) {
+                          setOpen(false);
+                          onSelect(entry);
+                        }
                       } else {
                         if (selected.includes(entry)) {
                           const filtered = selected.filter(
                             (item) => item !== entry
                           );
                           setSelected(filtered);
-                        } else {
+                        }
+                        if (multiSelect) {
                           const noneOptionRemoved = selected.filter(
                             (item) => item !== 'None'
                           );
                           setSelected([...noneOptionRemoved, entry]);
+                        } else {
+                          setSelected([entry]);
+                          if (closeOnSelect) {
+                            setOpen(false);
+                            onSelect(entry);
+                          }
                         }
                       }
                     }
                   }}
                   key={index}
                   style={{
-                    minHeight: 40,
+                    // minHeight: 40,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     accentColor: '#E34125',
+                    zIndex: open ? 5 : 0,
+                    marginBottom: 7,
+                    marginTop: 7
                   }}
                 >
                   <div>{getText(entry)}</div>

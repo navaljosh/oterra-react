@@ -1,0 +1,39 @@
+.fullAccessForm {
+  padding: 30px;
+  box-sizing: border-box;
+  height: 100%;
+  .backHeader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 30px;
+    > img {
+      margin-right: 8px;
+    }
+  }
+  .header {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .footer {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      border-radius: 25px;
+      background: #e34125;
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 20px 80px;
+      box-sizing: border-box;
+    }
+  }
+}

@@ -64,7 +64,14 @@ function AppMenu() {
         </div>
       </div>
       <div className={styles.bottom}>
-        <div className={styles.menuItem}>{getText('get_full_access')}</div>
+        <div
+          className={styles.menuItem}
+          onClick={() => {
+            handleNavigate('/fullAccess');
+          }}
+        >
+          {getText('get_full_access')}
+        </div>
         <div className={styles.menuItem}>{getText('privacy_policy')}</div>
         <div className={styles.menuItem}>{getText('contact_us')}</div>
         <div

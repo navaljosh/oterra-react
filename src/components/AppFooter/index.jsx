@@ -15,6 +15,7 @@ import { getText } from '../../languageTexts';
 import { useDispatch, useSelector } from 'react-redux';
 import { isObjectEmpty } from '../../scenes/MainScene';
 import { ACTION_TYPES } from '../../store/actionTypes';
+import { useNavigate } from 'react-router-dom';
 
 function AppFooter() {
   const signedIn = useSelector((appReducer) => appReducer.fullAccess) || false;
@@ -25,6 +26,7 @@ function AppFooter() {
   const [activeElement, setActiveElement] = useState(null);
   const selectedApp = useSelector((appReducer) => appReducer.selectedApp);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { variant = 'yellow' } =
     useSelector((appReducer) => appReducer.awsUserData) || 'yellow';
 
@@ -53,15 +55,15 @@ function AppFooter() {
               <div className={styles.bar}>
                 <div className={styles.appealing}>
                   <div className={styles.percent}>60%</div>
-                  <div className={styles.label}>Appealing</div>
+                  <div className={styles.label}>{getText('appealing')}</div>
                 </div>
                 <div className={styles.neutral}>
                   <div className={styles.percent}>30%</div>
-                  <div className={styles.label}>Neutral</div>
+                  <div className={styles.label}>{getText('neutral')}</div>
                 </div>
                 <div className={styles.unappealing}>
                   <div className={styles.percent}>10%</div>
-                  <div className={styles.label}>Unappealing</div>
+                  <div className={styles.label}>{getText('unappealing')}</div>
                 </div>
               </div>
             </div>
@@ -316,7 +318,7 @@ function AppFooter() {
                 >
                   Get full access to more insights on consumer color preferences
                   and flavor associations by completing the form{' '}
-                  <span>Here.</span>
+                  <span onClick={() => navigate('/fullAccess')}>Here.</span>
                 </div>
               </div>
             );

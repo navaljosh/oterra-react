@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './index.module.scss';
 import info from '../../assets/info.png';
 import menu from '../../assets/menu.png';
@@ -21,6 +21,12 @@ function AppHeader() {
     const { pathname = '' } = window.location || {};
     setShowTip(!appSelected && pathname !== '/lang' && !open);
   }, [appSelected, open]);
+
+  useEffect(() => {
+    if (appSelected) {
+      setOpen(false);
+    }
+  }, [appSelected]);
   return (
     <>
       <div className={styles.appHeader}>
