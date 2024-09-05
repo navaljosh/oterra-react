@@ -13,6 +13,12 @@ function AppMenu() {
   const loggedUser =
     useSelector((appReducer) => appReducer.loggedUser) || false;
 
+  const accessSent =
+    useSelector((appReducer) => appReducer.accessSent) || false;
+
+  const fullAccess =
+    useSelector((appReducer) => appReducer.fullAccess) || false;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -64,16 +70,28 @@ function AppMenu() {
         </div>
       </div>
       <div className={styles.bottom}>
+        {!fullAccess ? (
+          <div
+            className={styles.menuItem}
+            onClick={() => {
+              handleNavigate(accessSent ? '/accessSent' : '/fullAccess');
+            }}
+          >
+            {getText('get_full_access')}
+          </div>
+        ) : null}
         <div
           className={styles.menuItem}
-          onClick={() => {
-            handleNavigate('/fullAccess');
-          }}
+          onClick={() => window.open('https://oterra.com/privacy', '_self')}
         >
-          {getText('get_full_access')}
+          {getText('privacy_policy')}
         </div>
-        <div className={styles.menuItem}>{getText('privacy_policy')}</div>
-        <div className={styles.menuItem}>{getText('contact_us')}</div>
+        <div
+          className={styles.menuItem}
+          onClick={() => window.open('https://oterra.com/contact', '_self')}
+        >
+          {getText('contact_us')}
+        </div>
         <div
           className={styles.menuItem}
           onClick={() => {

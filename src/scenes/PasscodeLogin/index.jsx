@@ -6,17 +6,65 @@ import { useNavigate } from 'react-router-dom';
 import CustomInput from '../../components/CustomInput';
 import { useDispatch } from 'react-redux';
 import { ACTION_TYPES } from '../../store/actionTypes';
+import { loginUser } from '../../store/actions';
 
 function PassCodeLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('test@example.com');
   const [passcode, setPasscode] = useState('1111');
+  const [loading, setLoading] = useState(false);
   const disabled = !email.length || !passcode.length;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const dispatch = useDispatch();
+
+  const checkEmail = () => {
+    setLoading(true);
+    dispatch({
+      type: ACTION_TYPES.FULL_ACCESS,
+      payload: true,
+    });
+    sessionStorage.setItem(btoa('fullAccess'), btoa('true'));
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    const raw = JSON.stringify({
+      body: JSON.stringify({
+        email: email,
+      }),
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+      mode: 'cors',
+    };
+
+    fetch(
+      'https://w0516ks3hd.execute-api.ap-southeast-2.amazonaws.com/dev/get-user-data',
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.warn('result', result);
+        if (result.statusCode === 200) {
+          dispatch(loginUser({ user: result?.body }));
+          navigate('/app');
+        } else {
+          navigate('/details', { state: { email } });
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  };
+
   return (
     <>
       <BackHeader />
@@ -39,17 +87,15 @@ function PassCodeLogin() {
         </div>
         <div className={styles.footer}>
           <button
-            style={{ opacity: disabled ? 0.5 : 1 }}
-            disabled={disabled}
+            style={{ opacity: disabled || loading ? 0.5 : 1 }}
+            disabled={disabled || loading}
             onClick={() => {
-              dispatch({
-                type: ACTION_TYPES.FULL_ACCESS,
-                payload: true,
-              });
-              navigate('/details');
+              if (passcode === atob('MTExMQ==')) {
+                checkEmail();
+              }
             }}
           >
-            {getText('submit')}
+            {getText(loading ? 'please_wait' : 'submit')}
           </button>
         </div>
       </div>

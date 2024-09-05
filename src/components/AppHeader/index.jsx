@@ -30,7 +30,7 @@ function AppHeader() {
   return (
     <>
       <div className={styles.appHeader}>
-        <div className={styles.left}>
+        <div className={styles.left} style={{ visibility: 'hidden' }}>
           <img src={info} alt='info' />
         </div>
         <div

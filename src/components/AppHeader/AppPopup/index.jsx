@@ -13,7 +13,7 @@ import potato_chip from '../../../assets/apps/potato_chip.png';
 import french_fries from '../../../assets/apps/french_fries.png';
 import { useDispatch } from 'react-redux';
 import { ACTION_TYPES } from '../../../store/actionTypes';
-import { updateVariantColor } from '../../../api/awsApi';
+// import { updateVariantColor } from '../../../api/awsApi';
 
 const APPS = [
   {
@@ -21,7 +21,7 @@ const APPS = [
     displayName: 'Burgers',
     icon: burger_bun,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8',
   },
   {
     name: 'dumpling',

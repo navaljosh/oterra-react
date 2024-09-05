@@ -33,4 +33,18 @@
       }
     }
   }
+  .btnBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      background: #E34125;
+      border-radius: 37px;
+      font-weight: 600;
+      color: #fff;
+      border: none;
+      padding: 10px 40px;
+      box-sizing: border-box;
+    }
+  }
 }

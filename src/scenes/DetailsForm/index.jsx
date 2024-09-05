@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import BackHeader from '../../components/BackHeader';
 import { getText } from '../../languageTexts';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import CustomInput from '../../components/CustomInput';
 import CustomSelectBox from '../../components/CustomSelectBox';
 import { useDispatch } from 'react-redux';
-import { ACTION_TYPES } from '../../store/actionTypes';
+// import { ACTION_TYPES } from '../../store/actionTypes';
 import { loginUser } from '../../store/actions';
 
 function DetailsForm() {
   const navigate = useNavigate();
+  const params = useLocation();
   const [agreed, setAgreed] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const [userData, setUserData] = useState({
     name: 'Akash',
-    email: 'test@example.com',
+    email: params?.state?.email || "",
     phone: '+45 9465498988',
     position: 'Developer',
     company: 'NXT Interactive',
@@ -34,7 +35,7 @@ function DetailsForm() {
         <div className={styles.formData}>
           <CustomInput
             label={getText('name')}
-            defaultValue='Akash'
+            defaultValue={userData?.name}
             onChange={(e) => {
               setUserData({
                 ...userData,
@@ -44,7 +45,7 @@ function DetailsForm() {
           />
           <CustomInput
             label={getText('email')}
-            defaultValue='test@example.com'
+            defaultValue={userData?.email}
             onChange={(e) => {
               setUserData({
                 ...userData,
@@ -54,7 +55,7 @@ function DetailsForm() {
           />
           <CustomInput
             label={getText('phone')}
-            defaultValue='+45 9465498988'
+            defaultValue={userData?.phone}
             onChange={(e) => {
               setUserData({
                 ...userData,
@@ -64,7 +65,7 @@ function DetailsForm() {
           />
           <CustomInput
             label={getText('position')}
-            defaultValue='Developer'
+            defaultValue={userData?.position}
             onChange={(e) => {
               setUserData({
                 ...userData,
@@ -74,7 +75,7 @@ function DetailsForm() {
           />
           <CustomInput
             label={getText('company')}
-            defaultValue='NXT Interactive'
+            defaultValue={userData?.company}
             onChange={(e) => {
               setUserData({
                 ...userData,
@@ -84,7 +85,7 @@ function DetailsForm() {
           />
           <CustomInput
             label={getText('country')}
-            defaultValue='Singapore'
+            defaultValue={userData?.country}
             onChange={(e) => {
               setUserData({
                 ...userData,

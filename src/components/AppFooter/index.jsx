@@ -18,7 +18,7 @@ import { ACTION_TYPES } from '../../store/actionTypes';
 import { useNavigate } from 'react-router-dom';
 
 function AppFooter() {
-  const signedIn = useSelector((appReducer) => appReducer.fullAccess) || false;
+  const fullAccess = useSelector((appReducer) => appReducer.fullAccess) || false;
   const appSelected =
     useSelector((appReducer) => appReducer.appSelected) || false;
 
@@ -100,7 +100,7 @@ function AppFooter() {
       name: 'flavor',
       icon: flavor,
       iconSelected: flavorS,
-      active: signedIn && appSelected,
+      active: fullAccess && appSelected,
       needVariant: true,
       component: (variant) => {
         return (
@@ -129,7 +129,7 @@ function AppFooter() {
       name: 'intensity',
       icon: intensity,
       iconSelected: intensityS,
-      active: signedIn && appSelected,
+      active: fullAccess && appSelected,
       needVariant: true,
       component: () => {
         return (
@@ -154,7 +154,7 @@ function AppFooter() {
       name: 'solution',
       icon: solution,
       iconSelected: solutionS,
-      active: signedIn && appSelected,
+      active: fullAccess && appSelected,
       needVariant: false,
       component: () => {
         return (

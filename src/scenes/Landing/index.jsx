@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { getText } from '../../languageTexts';
 import { useLocation, useNavigate } from 'react-router-dom';

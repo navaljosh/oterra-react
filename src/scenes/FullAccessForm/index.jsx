@@ -25,21 +25,26 @@ const OPTIONS5 = [
 
 function FullAccessForm() {
   const [details, setDetails] = useState({
-    ques1: '',
-    ques2: '',
-    ques3: '',
-    ques4: '',
-    ques5: '',
+    ques1: 'No',
+    ques2: 'No',
+    ques3: 'No',
+    ques4: 'None',
+    ques5: 'None',
   });
-  console.warn('details', details);
   const { ques1, ques2, ques3, ques4, ques4Text, ques5, ques5Text } = details;
+  const ques4othersSelected = details?.ques4?.includes(
+    'Others (Please Specify)'
+  );
+  const ques5othersSelected = details?.ques5?.includes(
+    'Others (Please Specify)'
+  );
 
   const disabled =
     !ques1 ||
     !ques2 ||
     !ques3 ||
-    (ques4 === 'other' ? !ques4Text : !ques4) ||
-    (ques5 === 'other' ? !ques5Text : !ques5);
+    (ques4othersSelected ? !ques4Text : !ques4) ||
+    (ques5othersSelected ? !ques5Text : !ques5);
 
   const navigate = useNavigate();
 
@@ -61,6 +66,7 @@ function FullAccessForm() {
               ques1: val,
             })
           }
+          customMarginBottom={25}
           closeOnSelect
         />
         <CustomSelectBox
@@ -73,6 +79,7 @@ function FullAccessForm() {
               ques2: val,
             })
           }
+          customMarginBottom={25}
           closeOnSelect
         />
         <CustomSelectBox
@@ -85,21 +92,24 @@ function FullAccessForm() {
               ques3: val,
             })
           }
+          customMarginBottom={25}
           closeOnSelect
         />
         <CustomSelectBox
           label={getText('full_access_ques4')}
           options={OPTIONS4}
-          multiSelect={false}
-          onSelect={(val) =>
+          multiSelect={true}
+          onSelect={(val) => {
+            console.warn('val', val);
             setDetails({
               ...details,
               ques4: val,
-            })
-          }
-          closeOnSelect
+            });
+          }}
+          customMarginBottom={25}
+          closeOnSelect={false}
         />
-        {details.ques4 === 'other' ? (
+        {ques4othersSelected ? (
           <textarea
             style={{
               width: '100%',
@@ -120,16 +130,18 @@ function FullAccessForm() {
         <CustomSelectBox
           label={getText('full_access_ques5')}
           options={OPTIONS5}
-          multiSelect={false}
-          onSelect={(val) =>
+          multiSelect={true}
+          onSelect={(val) => {
+            console.warn('val', val);
             setDetails({
               ...details,
               ques5: val,
-            })
-          }
-          closeOnSelect
+            });
+          }}
+          customMarginBottom={25}
+          closeOnSelect={false}
         />
-        {details.ques5 === 'other' ? (
+        {ques5othersSelected ? (
           <textarea
             style={{
               width: '100%',
@@ -155,6 +167,8 @@ function FullAccessForm() {
             opacity: disabled ? 0.6 : 1,
           }}
           onClick={() => {
+            navigate('/accessSent');
+            localStorage.setItem(btoa('accessSent'), btoa('true'));
             console.warn('userData details', details);
           }}
         >

@@ -7,7 +7,8 @@ const initialState = {
   selectedVariant: 'yellow',
   showMenu: false,
   loggedUser: {},
-  awsUserData: {}
+  awsUserData: {},
+  accessSent: false
 };
 export default function appReducer(state = initialState, action) {
   switch (action.type) {
@@ -51,6 +52,12 @@ export default function appReducer(state = initialState, action) {
       return {
         ...state,
         awsUserData: action.payload,
+      };
+    }
+    case ACTION_TYPES.ACCESS_SENT: {
+      return {
+        ...state,
+        accessSent: action.payload,
       };
     }
     case ACTION_TYPES.LOGOUT: {

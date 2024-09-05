@@ -22,9 +22,6 @@ function MainScene() {
   useEffect(() => {
     if (!isObjectEmpty(memoizedSelectedApp)) {
       setOpen(true);
-      setTimeout(() => {
-        setOpen(false);
-      }, 8000);
     }
   }, [memoizedSelectedApp]);
   return (
@@ -55,10 +52,10 @@ function MainScene() {
       <Popup
         open={open}
         modal
-        closeOnDocumentClick
-        onClose={() => setOpen(false)}
+        closeOnDocumentClick={false}
+        // onClose={() => setOpen(false)}
         overlayStyle={{
-          background: '#ffffff70'
+          background: '#ffffff70',
         }}
       >
         <div className='infoModal'>
@@ -74,6 +71,9 @@ function MainScene() {
                 <li>{getText('avoid_cluttered_space')}</li>
                 <li>{getText('keep_two_feet_distance')}</li>
               </ul>
+            </div>
+            <div className={styles.btnBox}>
+              <button onClick={() => setOpen(false)}>OK</button>
             </div>
           </div>
         </div>
