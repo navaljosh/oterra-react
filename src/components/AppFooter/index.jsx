@@ -11,11 +11,21 @@ import flavorS from '../../assets/Footer/flavorS.png';
 import intensityS from '../../assets/Footer/intensityS.png';
 import solutionS from '../../assets/Footer/solutionS.png';
 import emotionFooter from '../../assets/Footer/emotionFooter.png';
+import emotionBlack from '../../assets/Footer/emotions/black.png';
+import emotionBlue from '../../assets/Footer/emotions/blue.png';
+import emotionBrown from '../../assets/Footer/emotions/brown.png';
+import emotionGreen from '../../assets/Footer/emotions/green.png';
+import emotionOrange from '../../assets/Footer/emotions/orange.png';
+import emotionPink from '../../assets/Footer/emotions/pink.png';
+import emotionPurple from '../../assets/Footer/emotions/purple.png';
+import emotionRed from '../../assets/Footer/emotions/red.png';
+import emotionYellow from '../../assets/Footer/emotions/yellow.png';
 import { getText } from '../../languageTexts';
 import { useDispatch, useSelector } from 'react-redux';
 import { isObjectEmpty } from '../../scenes/MainScene';
 import { ACTION_TYPES } from '../../store/actionTypes';
 import { useNavigate } from 'react-router-dom';
+import { getContentForAppVariant } from './getContent';
 
 function AppFooter() {
   const fullAccess =
@@ -28,54 +38,17 @@ function AppFooter() {
   const selectedApp = useSelector((appReducer) => appReducer.selectedApp);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { variant = 'pink' } =
+  const { variant = 'yellow' } =
     useSelector((appReducer) => appReducer.awsUserData) || 'yellow';
 
   console.warn('selectedApp', selectedApp);
   const { name: appName } = selectedApp || {};
 
-  const pinkSet1 = ['burger_bun', 'noodle', 'puff_snacks', 'dumpling'];
-  const pinkSet2 = ['savory_dip', 'burger_sauce', 'salad_dressing'];
-  const pinkSet3 = ['nugget', 'french_fries', 'potato_chip'];
-
-  const getContentForAppVariant = () => {
-    if (variant === 'pink') {
-      if (pinkSet1.includes(appName)) {
-        return {
-          slabs: {
-            appealing: 58,
-            neutral: 22,
-            nonAppealing: 20,
-          },
-          text: `Globally, 58% of consumers find pink-colored foods in this application appealing. More than half of them are Millennials aged 25-44, who are also more likely to cook at home.`,
-          text2: `When encountering food, whether unwrapping from a package or served to them, most of them first smell it to appreciate its aroma.`,
-        };
-      } else if (pinkSet2.includes(appName)) {
-        return {
-          slabs: {
-            appealing: 71,
-            neutral: 18,
-            nonAppealing: 11,
-          },
-          text: `Pink-colored sauces, dips, and dressings are particularly popular, with 71% of global consumers finding them appealing and showing the highest interest in trying them compared to other pink-colored foods.`,
-          text2: `They often consider themselves to be ‘adventurous eaters’, are open to experimenting with diverse cuisines and enjoy trying new and unfamiliar foods. Some even actively seek out exotic foods from different cultures and are always eager to explore new flavors.`,
-        };
-      } else if (pinkSet3.includes(appName)) {
-        return {
-          slabs: {
-            appealing: 59,
-            neutral: 20,
-            nonAppealing: 21,
-          },
-          text: `Globally, 59% of consumers find pink-colored foods in this application appealing.  More than half of them are millennials aged between 25-44.`,
-          text2: `They are also likely to cook more at home and consider themselves health-conscious, prioritizing fresh, natural, and organic options, while still seeking good value for their money.`,
-        };
-      }
-    }
-  };
-
-  const text = getContentForAppVariant();
-  console.warn('getContentForAppVariant', text);
+  const content = getContentForAppVariant({
+    variant,
+    appName,
+  });
+  console.warn('getContentForAppVariant', content);
 
   const OPTIONS = [
     {
@@ -84,7 +57,7 @@ function AppFooter() {
       iconSelected: consumerS,
       active: appSelected,
       needVariant: true,
-      component: (variant) => {
+      component: () => {
         return (
           <div className={styles.infoContent}>
             <div className={styles.header}>{getText('consumer_persona')}</div>
@@ -96,22 +69,50 @@ function AppFooter() {
                 alt='delete-sign'
               />
             </div>
-            {getText('consumers_who_find')} {variant} {selectedApp?.displayName}{' '}
-            &nbsp;
-            {getText('appealing_text')}
+            {getText(content.text)}
+            <br />
+            <br />
+            {content.text2 ? getText(content.text2) : null}
             <div className={styles.progress}>
-              <div className={styles.bar}>
-                <div className={styles.appealing} style={{ width: '58%' }}>
-                  <div className={styles.percent}>58%</div>
+              <div
+                className={styles.bar}
+                style={{
+                  height: content.slabs.nonAppealing < 20 ? 60 : 40,
+                }}
+              >
+                <div
+                  className={styles.appealing}
+                  style={{ width: `${content.slabs.appealing}%` }}
+                >
+                  <div className={styles.percent}>
+                    {content.slabs.appealing}%
+                  </div>
                   <div className={styles.label}>{getText('appealing')}</div>
                 </div>
-                <div className={styles.neutral} style={{ width: '22%' }}>
-                  <div className={styles.percent}>22%</div>
+                <div
+                  className={styles.neutral}
+                  style={{ width: `${content.slabs.neutral}%` }}
+                >
+                  <div className={styles.percent}>{content.slabs.neutral}%</div>
                   <div className={styles.label}>{getText('neutral')}</div>
                 </div>
-                <div className={styles.unappealing} style={{ width: '20%' }}>
-                  <div className={styles.percent}>20%</div>
-                  <div className={styles.label}>{getText('unappealing')}</div>
+                <div
+                  className={styles.unappealing}
+                  style={{ width: `${content.slabs.nonAppealing}%` }}
+                >
+                  <div className={styles.percent}>
+                    {content.slabs.nonAppealing}%
+                  </div>
+                  <div
+                    className={styles.label}
+                    style={{
+                      bottom:
+                        content.slabs.nonAppealing < 20 ? '-40px' : '-20px',
+                      right: content.slabs.nonAppealing < 20 ? 0 : 'auto',
+                    }}
+                  >
+                    {getText('unappealing')}
+                  </div>
                 </div>
               </div>
             </div>
@@ -125,7 +126,31 @@ function AppFooter() {
       iconSelected: emotionS,
       active: appSelected,
       needVariant: false,
-      component: () => {
+      component: (variant) => {
+        const getEmotionIcon = () => {
+          switch (variant) {
+            case 'yellow':
+              return emotionYellow;
+            case 'black':
+              return emotionBlack;
+            case 'blue':
+              return emotionBlue;
+            case 'brown':
+              return emotionBrown;
+            case 'green':
+              return emotionGreen;
+            case 'orange':
+              return emotionOrange;
+            case 'pink':
+              return emotionPink;
+            case 'purple':
+              return emotionPurple;
+            case 'red':
+              return emotionRed;
+            default:
+              return emotionFooter;
+          }
+        };
         return (
           <div className={styles.infoContent}>
             <div className={styles.header}>{getText('top_5_emotions')}</div>
@@ -138,7 +163,14 @@ function AppFooter() {
               />
             </div>
             <div className={styles.emotionImg}>
-              <img src={emotionFooter} alt='emotions' />
+              <img
+                src={getEmotionIcon()}
+                alt='emotions'
+                style={{
+                  maxHeight: 126,
+                  objectFit: 'contain',
+                }}
+              />
             </div>
           </div>
         );
@@ -163,11 +195,10 @@ function AppFooter() {
               />
             </div>
             <div className={styles.flovorContent}>
-              {getText('consumer_rank')} {variant}&nbsp;
-              {getText('top_3_preferred_color')}
+              {getText(content.flavourText)}
               <br />
-              {getText('they_associate')} {variant}{' '}
-              {getText('color_savory_food')}
+              <br />
+              {getText(content.flavourText2)}
             </div>
           </div>
         );
