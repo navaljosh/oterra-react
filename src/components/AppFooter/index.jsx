@@ -18,7 +18,8 @@ import { ACTION_TYPES } from '../../store/actionTypes';
 import { useNavigate } from 'react-router-dom';
 
 function AppFooter() {
-  const fullAccess = useSelector((appReducer) => appReducer.fullAccess) || false;
+  const fullAccess =
+    useSelector((appReducer) => appReducer.fullAccess) || false;
   const appSelected =
     useSelector((appReducer) => appReducer.appSelected) || false;
 
@@ -27,8 +28,54 @@ function AppFooter() {
   const selectedApp = useSelector((appReducer) => appReducer.selectedApp);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { variant = 'yellow' } =
+  const { variant = 'pink' } =
     useSelector((appReducer) => appReducer.awsUserData) || 'yellow';
+
+  console.warn('selectedApp', selectedApp);
+  const { name: appName } = selectedApp || {};
+
+  const pinkSet1 = ['burger_bun', 'noodle', 'puff_snacks', 'dumpling'];
+  const pinkSet2 = ['savory_dip', 'burger_sauce', 'salad_dressing'];
+  const pinkSet3 = ['nugget', 'french_fries', 'potato_chip'];
+
+  const getContentForAppVariant = () => {
+    if (variant === 'pink') {
+      if (pinkSet1.includes(appName)) {
+        return {
+          slabs: {
+            appealing: 58,
+            neutral: 22,
+            nonAppealing: 20,
+          },
+          text: `Globally, 58% of consumers find pink-colored foods in this application appealing. More than half of them are Millennials aged 25-44, who are also more likely to cook at home.`,
+          text2: `When encountering food, whether unwrapping from a package or served to them, most of them first smell it to appreciate its aroma.`,
+        };
+      } else if (pinkSet2.includes(appName)) {
+        return {
+          slabs: {
+            appealing: 71,
+            neutral: 18,
+            nonAppealing: 11,
+          },
+          text: `Pink-colored sauces, dips, and dressings are particularly popular, with 71% of global consumers finding them appealing and showing the highest interest in trying them compared to other pink-colored foods.`,
+          text2: `They often consider themselves to be ‘adventurous eaters’, are open to experimenting with diverse cuisines and enjoy trying new and unfamiliar foods. Some even actively seek out exotic foods from different cultures and are always eager to explore new flavors.`,
+        };
+      } else if (pinkSet3.includes(appName)) {
+        return {
+          slabs: {
+            appealing: 59,
+            neutral: 20,
+            nonAppealing: 21,
+          },
+          text: `Globally, 59% of consumers find pink-colored foods in this application appealing.  More than half of them are millennials aged between 25-44.`,
+          text2: `They are also likely to cook more at home and consider themselves health-conscious, prioritizing fresh, natural, and organic options, while still seeking good value for their money.`,
+        };
+      }
+    }
+  };
+
+  const text = getContentForAppVariant();
+  console.warn('getContentForAppVariant', text);
 
   const OPTIONS = [
     {
@@ -50,19 +97,20 @@ function AppFooter() {
               />
             </div>
             {getText('consumers_who_find')} {variant} {selectedApp?.displayName}{' '}
+            &nbsp;
             {getText('appealing_text')}
             <div className={styles.progress}>
               <div className={styles.bar}>
-                <div className={styles.appealing}>
-                  <div className={styles.percent}>60%</div>
+                <div className={styles.appealing} style={{ width: '58%' }}>
+                  <div className={styles.percent}>58%</div>
                   <div className={styles.label}>{getText('appealing')}</div>
                 </div>
-                <div className={styles.neutral}>
-                  <div className={styles.percent}>30%</div>
+                <div className={styles.neutral} style={{ width: '22%' }}>
+                  <div className={styles.percent}>22%</div>
                   <div className={styles.label}>{getText('neutral')}</div>
                 </div>
-                <div className={styles.unappealing}>
-                  <div className={styles.percent}>10%</div>
+                <div className={styles.unappealing} style={{ width: '20%' }}>
+                  <div className={styles.percent}>20%</div>
                   <div className={styles.label}>{getText('unappealing')}</div>
                 </div>
               </div>
