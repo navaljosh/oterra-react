@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import consumer from '../../assets/Footer/consumer.png';
 import emotion from '../../assets/Footer/emotion.png';
 import flavor from '../../assets/Footer/flavor.png';
-import intensity from '../../assets/Footer/intensity.png';
+import intensityIcon from '../../assets/Footer/intensity.png';
 import solution from '../../assets/Footer/solution.png';
 import consumerS from '../../assets/Footer/consumerS.png';
 import emotionS from '../../assets/Footer/emotionS.png';
@@ -11,21 +11,15 @@ import flavorS from '../../assets/Footer/flavorS.png';
 import intensityS from '../../assets/Footer/intensityS.png';
 import solutionS from '../../assets/Footer/solutionS.png';
 import emotionFooter from '../../assets/Footer/emotionFooter.png';
-import emotionBlack from '../../assets/Footer/emotions/black.png';
-import emotionBlue from '../../assets/Footer/emotions/blue.png';
-import emotionBrown from '../../assets/Footer/emotions/brown.png';
-import emotionGreen from '../../assets/Footer/emotions/green.png';
-import emotionOrange from '../../assets/Footer/emotions/orange.png';
-import emotionPink from '../../assets/Footer/emotions/pink.png';
-import emotionPurple from '../../assets/Footer/emotions/purple.png';
-import emotionRed from '../../assets/Footer/emotions/red.png';
-import emotionYellow from '../../assets/Footer/emotions/yellow.png';
 import { getText } from '../../languageTexts';
 import { useDispatch, useSelector } from 'react-redux';
 import { isObjectEmpty } from '../../scenes/MainScene';
 import { ACTION_TYPES } from '../../store/actionTypes';
 import { useNavigate } from 'react-router-dom';
 import { getContentForAppVariant } from './getContent';
+import { EmoteLangImageServer } from './imageServer';
+import IntensityComponent from './IntensityComp';
+import SolutionComp from './SolutionComp';
 
 function AppFooter() {
   const fullAccess =
@@ -41,13 +35,13 @@ function AppFooter() {
   const { variant = 'yellow' } =
     useSelector((appReducer) => appReducer.awsUserData) || 'yellow';
 
-  console.warn('selectedApp', selectedApp);
   const { name: appName } = selectedApp || {};
 
-  const content = getContentForAppVariant({
-    variant,
-    appName,
-  });
+  const content =
+    getContentForAppVariant({
+      variant,
+      appName,
+    }) || {};
   console.warn('getContentForAppVariant', content);
 
   const OPTIONS = [
@@ -130,23 +124,23 @@ function AppFooter() {
         const getEmotionIcon = () => {
           switch (variant) {
             case 'yellow':
-              return emotionYellow;
+              return EmoteLangImageServer('yellow.png');
             case 'black':
-              return emotionBlack;
+              return EmoteLangImageServer('black.png');
             case 'blue':
-              return emotionBlue;
+              return EmoteLangImageServer('blue.png');
             case 'brown':
-              return emotionBrown;
+              return EmoteLangImageServer('brown.png');
             case 'green':
-              return emotionGreen;
+              return EmoteLangImageServer('green.png');
             case 'orange':
-              return emotionOrange;
+              return EmoteLangImageServer('orange.png');
             case 'pink':
-              return emotionPink;
+              return EmoteLangImageServer('pink.png');
             case 'purple':
-              return emotionPurple;
+              return EmoteLangImageServer('purple.png');
             case 'red':
-              return emotionRed;
+              return EmoteLangImageServer('red.png');
             default:
               return emotionFooter;
           }
@@ -206,26 +200,18 @@ function AppFooter() {
     },
     {
       name: 'intensity',
-      icon: intensity,
+      icon: intensityIcon,
       iconSelected: intensityS,
       active: fullAccess && appSelected,
       needVariant: true,
-      component: () => {
+      component: (variant) => {
         return (
-          <div className={styles.infoContent}>
-            <div className={styles.header}>{getText('color_intensity')}</div>
-            <div className={styles.close} onClick={() => setSelectedTab(false)}>
-              <img
-                width='28'
-                height='28'
-                src='https://img.icons8.com/sf-regular/48/delete-sign.png'
-                alt='delete-sign'
-              />
-            </div>
-            <div className={styles.emotionImg}>
-              <img src={emotionFooter} alt='emotions' />
-            </div>
-          </div>
+          <IntensityComponent
+            appName={appName}
+            variant={variant}
+            setSelectedTab={setSelectedTab}
+            content={content}
+          />
         );
       },
     },
@@ -237,20 +223,10 @@ function AppFooter() {
       needVariant: false,
       component: () => {
         return (
-          <div className={styles.infoContent}>
-            <div className={styles.header}>{getText('top_5_emotions')}</div>
-            <div className={styles.close} onClick={() => setSelectedTab(false)}>
-              <img
-                width='28'
-                height='28'
-                src='https://img.icons8.com/sf-regular/48/delete-sign.png'
-                alt='delete-sign'
-              />
-            </div>
-            <div className={styles.emotionImg}>
-              <img src={emotionFooter} alt='emotions' />
-            </div>
-          </div>
+          <SolutionComp
+            solutionData={content?.solutionData}
+            setSelectedTab={setSelectedTab}
+          />
         );
       },
     },
@@ -312,9 +288,12 @@ function AppFooter() {
 
   const callbackFn = (entry, index) => {
     if (appSelected) {
-      if (entry.active && entry.name !== selectedTab.name) {
+      if (entry.active) {
         setSelectedTab(entry);
         setActiveElement({});
+        if (entry.name === selectedTab.name) {
+          setSelectedTab({});
+        }
       } else {
         setSelectedTab({});
         togglePseudo(`footerOption${index}`);
