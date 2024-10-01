@@ -16,7 +16,7 @@ export default function IntensityComponent({
   }, []);
 
   return (
-    <div className={styles.infoContent}>
+    <div className={styles.infoContent} id='infoContent'>
       <div className={styles.header}>{getText('color_intensity')}</div>
       <div className={styles.close} onClick={() => setSelectedTab(false)}>
         <img

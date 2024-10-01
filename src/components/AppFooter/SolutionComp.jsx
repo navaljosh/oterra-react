@@ -15,7 +15,7 @@ export default function SolutionComp({
   const tabName = selected.name;
 
   return (
-    <div className={styles.solution}>
+    <div className={styles.solution} id='infoContent'>
       <div className={styles.tabName}>{tabName}</div>
       <div className={styles.close} onClick={() => setSelectedTab(false)}>
         <img

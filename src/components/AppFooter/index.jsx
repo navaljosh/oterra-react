@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import styles from './index.module.scss';
 import consumer from '../../assets/Footer/consumer.png';
 import emotion from '../../assets/Footer/emotion.png';
@@ -10,6 +10,7 @@ import emotionS from '../../assets/Footer/emotionS.png';
 import flavorS from '../../assets/Footer/flavorS.png';
 import intensityS from '../../assets/Footer/intensityS.png';
 import solutionS from '../../assets/Footer/solutionS.png';
+import downAnimate from '../../assets/downAnimate.gif';
 import emotionFooter from '../../assets/Footer/emotionFooter.png';
 import { getText } from '../../languageTexts';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,6 +21,7 @@ import { getContentForAppVariant } from './getContent';
 import { EmoteLangImageServer } from './imageServer';
 import IntensityComponent from './IntensityComp';
 import SolutionComp from './SolutionComp';
+import Consumer from './Consumer';
 
 function AppFooter() {
   const fullAccess =
@@ -44,6 +46,24 @@ function AppFooter() {
     }) || {};
   console.warn('getContentForAppVariant', content);
 
+  const [selectedTab, setSelectedTab] = useState(false);
+  const [showScroll, setShowScroll] = useState(false);
+
+  useLayoutEffect(() => {
+    if (selectedTab) {
+      const scrollHeight = document.getElementById('infoContent')?.scrollHeight;
+      console.warn('scrollHeight', scrollHeight, scrollHeight > 232);
+      setShowScroll(scrollHeight > 232);
+    }
+  }, [selectedTab]);
+
+  // useLayoutEffect(() => {
+  //   if (selectedTab) {
+  //     const scrollTop = document.getElementById('footerContent')?.scrollTop;
+  //     setShowScroll(scrollTop > 0);
+  //   }
+  // }, [selectedTab]);
+
   const OPTIONS = [
     {
       name: 'consumer',
@@ -51,66 +71,85 @@ function AppFooter() {
       iconSelected: consumerS,
       active: appSelected,
       needVariant: true,
-      component: () => {
+      component: (variant, showScroll) => {
         return (
-          <div className={styles.infoContent}>
-            <div className={styles.header}>{getText('consumer_persona')}</div>
-            <div className={styles.close} onClick={() => setSelectedTab(false)}>
-              <img
-                width='28'
-                height='28'
-                src='https://img.icons8.com/sf-regular/48/delete-sign.png'
-                alt='delete-sign'
-              />
-            </div>
-            {getText(content.text)}
-            <br />
-            <br />
-            {content.text2 ? getText(content.text2) : null}
-            <div className={styles.progress}>
-              <div
-                className={styles.bar}
-                style={{
-                  height: content.slabs.nonAppealing < 20 ? 60 : 40,
-                }}
-              >
-                <div
-                  className={styles.appealing}
-                  style={{ width: `${content.slabs.appealing}%` }}
-                >
-                  <div className={styles.percent}>
-                    {content.slabs.appealing}%
-                  </div>
-                  <div className={styles.label}>{getText('appealing')}</div>
-                </div>
-                <div
-                  className={styles.neutral}
-                  style={{ width: `${content.slabs.neutral}%` }}
-                >
-                  <div className={styles.percent}>{content.slabs.neutral}%</div>
-                  <div className={styles.label}>{getText('neutral')}</div>
-                </div>
-                <div
-                  className={styles.unappealing}
-                  style={{ width: `${content.slabs.nonAppealing}%` }}
-                >
-                  <div className={styles.percent}>
-                    {content.slabs.nonAppealing}%
-                  </div>
-                  <div
-                    className={styles.label}
-                    style={{
-                      bottom:
-                        content.slabs.nonAppealing < 20 ? '-40px' : '-20px',
-                      right: content.slabs.nonAppealing < 20 ? 0 : 'auto',
-                    }}
-                  >
-                    {getText('unappealing')}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Consumer
+            setSelectedTab={setSelectedTab}
+            content={content}
+            showScroll={showScroll}
+          />
+          // <div className={styles.infoContent} id='infoContent'>
+          //   {showScroll ? (
+          //     <div className={styles.showScroll}>
+          //       Scroll <img src={downAnimate} alt='down' />
+          //     </div>
+          //   ) : <div>showScroll</div>}
+          //   <div className={styles.header}>{getText('consumer_persona')}</div>
+          //   <div className={styles.close} onClick={() => setSelectedTab(false)}>
+          //     <img
+          //       width='28'
+          //       height='28'
+          //       src='https://img.icons8.com/sf-regular/48/delete-sign.png'
+          //       alt='delete-sign'
+          //     />
+          //   </div>
+          //   {getText(content.text)}
+          //   <br />
+          //   <br />
+          //   {content.text2 ? getText(content.text2) : null}
+          //   <div className={styles.progress}>
+          //     <div
+          //       className={styles.bar}
+          //       style={{
+          //         height: content.slabs.nonAppealing < 20 ? 60 : 40,
+          //       }}
+          //     >
+          //       <div
+          //         className={styles.appealing}
+          //         style={{
+          //           width: `${
+          //             content.slabs.nonAppealing < 10
+          //               ? content.slabs.appealing - 20
+          //               : content.slabs.appealing
+          //           }%`,
+          //         }}
+          //       >
+          //         <div className={styles.percent}>
+          //           {content.slabs.appealing}%
+          //         </div>
+          //         <div className={styles.label}>{getText('appealing')}</div>
+          //       </div>
+          //       <div
+          //         className={styles.neutral}
+          //         style={{
+          //           width: `${
+          //             content.slabs.nonAppealing < 10
+          //               ? content.slabs.neutral + 10
+          //               : content.slabs.neutral
+          //           }%`,
+          //         }}
+          //       >
+          //         <div className={styles.percent}>{content.slabs.neutral}%</div>
+          //         <div className={styles.label}>{getText('neutral')}</div>
+          //       </div>
+          //       <div
+          //         className={styles.unappealing}
+          //         style={{
+          //           width: `${
+          //             content.slabs.nonAppealing < 10
+          //               ? content.slabs.nonAppealing + 10
+          //               : content.slabs.nonAppealing
+          //           }%`,
+          //         }}
+          //       >
+          //         <div className={styles.percent}>
+          //           {content.slabs.nonAppealing}%
+          //         </div>
+          //         <div className={styles.label}>{getText('unappealing')}</div>
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
         );
       },
     },
@@ -146,7 +185,7 @@ function AppFooter() {
           }
         };
         return (
-          <div className={styles.infoContent}>
+          <div className={styles.infoContent} id='infoContent'>
             <div className={styles.header}>{getText('top_5_emotions')}</div>
             <div className={styles.close} onClick={() => setSelectedTab(false)}>
               <img
@@ -178,7 +217,7 @@ function AppFooter() {
       needVariant: true,
       component: (variant) => {
         return (
-          <div className={styles.infoContent}>
+          <div className={styles.infoContent} id='infoContent'>
             <div className={styles.header}>{getText('color_n_flovor')}</div>
             <div className={styles.close} onClick={() => setSelectedTab(false)}>
               <img
@@ -231,7 +270,6 @@ function AppFooter() {
       },
     },
   ];
-  const [selectedTab, setSelectedTab] = useState(false);
 
   useEffect(() => {
     if (activeElement) {
@@ -314,8 +352,21 @@ function AppFooter() {
       ></div>
       <div className={styles.appFooter}>
         {!isObjectEmpty(selectedTab) ? (
-          <div className={styles.footerContent}>
-            {selectedTab.component(variant)}
+          <div
+            className={styles.footerContent}
+            id='footerContent'
+            onScroll={() => {
+              const scrollTop =
+                document.getElementById('footerContent')?.scrollTop;
+              setShowScroll(scrollTop === 0);
+            }}
+          >
+            {selectedTab.component(variant, showScroll)}
+            {showScroll ? (
+              <div className={styles.showScroll}>
+                Scroll <img src={downAnimate} alt='down' />
+              </div>
+            ) : null}
           </div>
         ) : null}
         <div className={styles.optionsRow}>
