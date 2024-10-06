@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { getText } from '../../languageTexts';
+import ReactHtmlParser from 'react-html-parser';
 
 export default function IntensityComponent({
   setSelectedTab,
@@ -44,7 +45,7 @@ export default function IntensityComponent({
                 fontWeight: intensity ? 'bold' : 'normal',
               }}
             >
-              BRIGHT
+              {getText('bright')}
             </div>
           </div>
           <div className={styles.wrapper}>
@@ -63,7 +64,7 @@ export default function IntensityComponent({
                 fontWeight: intensity ? 'normal' : 'bold',
               }}
             >
-              PASTEL
+              {getText('pastel')}
             </div>
           </div>
         </div>
@@ -74,10 +75,12 @@ export default function IntensityComponent({
             minHeight: minH,
           }}
         >
-          {getText(
-            intensity
-              ? content?.intensityTextBright
-              : content.intensityTextPastel
+          {ReactHtmlParser(
+            getText(
+              intensity
+                ? content?.intensityTextBright
+                : content.intensityTextPastel
+            )
           )}
         </div>
       </div>

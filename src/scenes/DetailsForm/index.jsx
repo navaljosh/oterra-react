@@ -18,7 +18,7 @@ function DetailsForm() {
   }, []);
   const [userData, setUserData] = useState({
     name: 'Akash',
-    email: params?.state?.email || "",
+    email: params?.state?.email || "test@gmail.com",
     phone: '+45 9465498988',
     position: 'Developer',
     company: 'NXT Interactive',

@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { getText } from '../../languageTexts';
 import { useLocation, useNavigate } from 'react-router-dom';
-import landingTop from '../../assets/landingTop.png';
-import overlay from '../../assets/overlay.png';
+import landingText from '../../assets/landingText.png';
 import oterra from '../../assets/oterra.png';
 import { ACTION_TYPES } from '../../store/actionTypes';
 import { useDispatch } from 'react-redux';
@@ -14,16 +13,16 @@ function Landing() {
   const dispatch = useDispatch();
   const { search } = useLocation();
   const [loading, setLoading] = useState(search !== '?logout');
-  const [showLang, setShowLang] = useState(false);
+  // const [showLang, setShowLang] = useState(false);
   const [showLangPopup, setShowLangPopup] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      setShowLang(true);
+      // setShowLang(true);
       setTimeout(() => {
         setShowLangPopup(true);
-      }, 2000);
-    }, 2000);
+      }, 1000);
+    }, 500);
   }, []);
 
   if (loading) {
@@ -32,7 +31,7 @@ function Landing() {
         <div
           className={styles.fullScreen}
           style={{
-            height: showLang ? `calc(100% - 520px)` : '100%',
+            height: '100%',
           }}
         >
           <img
@@ -47,26 +46,35 @@ function Landing() {
         {showLangPopup ? (
           <LanguageSelect onSelect={() => setLoading(false)} />
         ) : null}
-        {showLang ? (
+        {/* {showLang ? (
           <img src={landingTop} alt='landingTop' className={styles.overlayBg} />
-        ) : null}
+        ) : null} */}
       </>
     );
   }
 
   return (
     <div className={styles.landing}>
-      <div className={styles.top} data-aos='fade-up'>
+      {/* <div className={styles.top} data-aos='fade-up'>
         <img src={landingTop} alt='bg' />
-      </div>
+      </div> */}
       <div className={styles.bottom} data-aos='fade-down'>
-        <img src={overlay} alt='overlay' className={styles.overlay} />
+        {/* <img src={overlay} alt='overlay' className={styles.overlay} /> */}
         <div className={styles.tagline}>
-          {getText('building_a')}
+          {/* {getText('building_a')}
           <br />
           <span>{getText('sustainable')}</span>
           <br />
-          {getText('future')}
+          {getText('future')} */}
+          <img src={landingText} alt='savor' className={styles.appText} />
+          <img
+            src={oterra}
+            alt='OTERRA'
+            className={styles.brandLogo}
+            data-aos='fade-down'
+            data-aos-delay='50'
+            data-aos-duration='1000'
+          />
         </div>
         <div className={styles.actionBtns}>
           <button onClick={() => navigate('/login')}>

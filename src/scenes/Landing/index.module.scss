@@ -1,7 +1,9 @@
 .fullScreen {
   // height: 100%;
   width: 100%;
-  background-color: #e34125;
+  // background-color: #e34125;
+  background: url('../../assets/bgImage.svg') no-repeat;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,22 +19,37 @@
 }
 
 .landing {
-  // background: url('../../assets/landingBg.png') no-repeat;
-  // background-size: cover;
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   // padding: 30px;
+  background: url('../../assets/bgImage.svg') no-repeat;
+  background-size: cover;
   box-sizing: border-box;
   justify-content: flex-end;
   flex-direction: column;
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
   .tagline {
     font-weight: 700;
     font-size: 40px;
     color: #ffffff;
     position: relative;
+    text-align: center;
     z-index: 2;
+    .appText {
+      max-width: 80%;
+    }
+    .brandLogo{
+      max-width: 40%;
+      margin-top: 30px;
+    }
     > span {
       color: #fefa55;
     }
@@ -45,7 +62,7 @@
     }
   }
   .bottom {
-    background: #e34125;
+    // background: #e34125;
     width: 100%;
     padding: 30px;
     box-sizing: border-box;
@@ -67,19 +84,19 @@
     margin-top: 30px;
 
     button {
-      width: 100%;
-      background: transparent;
+      width: 80%;
+      background: #fff;
       border: 1px solid #fff;
       border-radius: 46px;
       padding: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
       text-transform: uppercase;
-      color: #ffffff;
+      color: #e34125;
       font-weight: 700;
       cursor: pointer;
 
       &:last-child {
-        background-color: #ffffff10;
+        background-color: #fff;
       }
     }
   }

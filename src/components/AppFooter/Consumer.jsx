@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './index.module.scss';
 import { getText } from '../../languageTexts';
+import ReactHtmlParser from 'react-html-parser';
 
-export default function Consumer({ showScroll, content, setSelectedTab }) {
-  console.warn('showScroll', showScroll);
+export default function Consumer({ content, setSelectedTab }) {
   return (
     <div className={styles.infoContent} id='infoContent'>
       <div className={styles.header}>{getText('consumer_persona')}</div>
@@ -15,10 +15,10 @@ export default function Consumer({ showScroll, content, setSelectedTab }) {
           alt='delete-sign'
         />
       </div>
-      {getText(content.text)}
+      {ReactHtmlParser(getText(content.text))}
       <br />
       <br />
-      {content.text2 ? getText(content.text2) : null}
+      {content.text2 ? ReactHtmlParser(getText(content.text2)) : null}
       <div className={styles.progress}>
         <div
           className={styles.bar}

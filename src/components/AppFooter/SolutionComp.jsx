@@ -48,6 +48,7 @@ export default function SolutionComp({
             return (
               <div
                 className={styles.box}
+                key={index}
                 // style={{
                 //   transform: `translateX(${currentIndex * -182}px)`,
                 // }}

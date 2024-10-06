@@ -43,7 +43,7 @@ function LanguageSelect({ onSelect, isScreen }) {
         }}
       >
         {isScreen ? null : (
-          <div className={styles.boxHeader}>{getText('language')}</div>
+          <div className={styles.boxHeader}>{getText('choose_your_language')}</div>
         )}
         <div className={styles.langScroll}>
           <ScrollSelect
@@ -55,7 +55,7 @@ function LanguageSelect({ onSelect, isScreen }) {
         <div
           className={styles.nextBtn}
           style={{
-            marginTop: isScreen ? '150px' : 'auto',
+            marginTop: isScreen ? '150px' : '30px',
           }}
         >
           <button
