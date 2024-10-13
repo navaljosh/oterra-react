@@ -1620,6 +1620,8 @@ export const LANGUAGES = {
     greenSet2Intensity2: `与淡绿色相比，消费者更喜欢亮绿色。  39%的消费者更喜欢亮绿色，因为其美味、开胃和强烈的视觉外观，而超过四分之一的消费者既喜欢柔和的绿色又喜欢亮绿色。他们中的大多数人将这种颜色与强烈的风味强度联系在一起，而略低的百分比认为它具有适中的风味强度。 `,
     greenSet3Intensity1: `对两种颜色强度的偏好相当平衡。  45% 的受访者更喜欢淡绿色，因为它具有自然、健康的外观，而 11% 的消费者既喜欢淡绿色又喜欢亮绿色。  他们中的大多数人将这种颜色与从适中到强烈的风味强度联系在一起。`,
     greenSet3Intensity2: `44%的受访者更喜欢亮绿色，因为它具有强烈的视觉吸引力和美味、开胃的外观，而11%的消费者同时喜欢柔和的绿色和亮绿色。他们中的大多数人将这种颜色与从强烈到非常强烈的味道强度联系在一起。`,
+    bright: '明亮的',
+    pastel: '柔和的',
   },
   SPA: {
     building_a: 'Construyendo un',
@@ -1896,6 +1898,8 @@ a tomar decisiones empresariales`,
     greenSet2Intensity2: `Los consumidores prefieren un poco más el verde intenso que el verde claro.  El 39% de los consumidores prefiere el verde intenso por su apariencia visual deliciosa, apetitosa y fuerte, mientras que a más de una cuarta parte de los consumidores les gusta tanto el verde claro como el verde intenso. La mayoría asocia este color con una intensidad de sabor fuerte mientras que un porcentaje ligeramente menor lo percibe con una intensidad de sabor equilibrada.`,
     greenSet3Intensity1: `La preferencia por las dos intensidades de color está bastante equilibrada.  El 45% de los encuestados prefiere el verde claro por su apariencia natural y saludable, mientras que al 11% de los consumidores le gusta tanto el verde claro como el verde intenso.  La mayoría asocia este color con una intensidad de sabor que va desde equilibrada hasta fuerte.`,
     greenSet3Intensity2: `El 44% de los encuestados prefiere el verde intenso por su fuerte atractivo visual y su apariencia deliciosa y apetitosa, mientras que al 11% de los consumidores les gusta tanto el verde claro como el verde intenso. La mayoría asocia este color con una intensidad de sabor que va de fuerte a muy fuerte.`,
+    bright: 'Brillante',
+    pastel: 'Pastel',
   },
   POR: {
     building_a: 'Construindo um',
@@ -2173,6 +2177,8 @@ a tomar decisiones empresariales`,
     greenSet2Intensity2: `Os consumidores preferem o verde brilhante ligeiramente mais do que o verde pastel.  39% dos consumidores preferem o verde brilhante pelo seu aspeto visual delicioso, apetitoso e forte, enquanto mais de um quarto dos consumidores gosta tanto do verde pastel como do verde brilhante. A maioria dos consumidores associa esta cor a uma intensidade de sabor forte, enquanto uma percentagem ligeiramente inferior a percepciona como tendo uma intensidade de sabor equilibrada. `,
     greenSet3Intensity1: `A preferência pelas duas intensidades de cor é bastante equilibrada.  45% dos inquiridos preferem o verde pastel pelo seu aspeto natural e mais saudável, enquanto 11% dos consumidores gostam tanto do verde pastel como do verde brilhante.  A maioria associa esta cor a uma intensidade de sabor que varia de equilibrada a forte.`,
     greenSet3Intensity2: `44% dos inquiridos preferem o verde brilhante pelo seu forte apelo visual e aparência deliciosa e apetitosa, enquanto 11% dos consumidores gostam tanto do verde pastel como do verde brilhante. A maioria associa esta cor a uma intensidade de sabor que varia de forte a muito forte.`,
+    bright: 'pastel',
+    pastel: 'brilhante',
   },
 };
 

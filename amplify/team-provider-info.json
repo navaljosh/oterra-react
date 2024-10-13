@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-oterrareact-dev-2ee00-authRole",
+      "UnauthRoleArn": "arn:aws:iam::503561431244:role/amplify-oterrareact-dev-2ee00-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::503561431244:role/amplify-oterrareact-dev-2ee00-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-oterrareact-dev-2ee00-deployment",
+      "UnauthRoleName": "amplify-oterrareact-dev-2ee00-unauthRole",
+      "StackName": "amplify-oterrareact-dev-2ee00",
+      "StackId": "arn:aws:cloudformation:eu-central-1:503561431244:stack/amplify-oterrareact-dev-2ee00/7fc428e0-8947-11ef-8e96-023f4ba9dcb5",
+      "AmplifyAppId": "dcclo3d9v5axg"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dcclo3d9v5axg",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}

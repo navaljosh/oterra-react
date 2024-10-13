@@ -9,6 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 440px;
+  background: #000;
 }
 
 textarea {
@@ -24,6 +25,7 @@ textarea {
   padding-bottom: 'env(safe-area-inset-bottom)';
   overflow: 'auto';
   position: relative;
+  background: #fff;
 }
 
 code {

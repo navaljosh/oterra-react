@@ -7,6 +7,7 @@ import CustomInput from '../../components/CustomInput';
 import { useDispatch } from 'react-redux';
 import { ACTION_TYPES } from '../../store/actionTypes';
 import { loginUser } from '../../store/actions';
+import { API_ENDPOINTS, API_KEY } from '../../api/api.constants';
 
 function PassCodeLogin() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ function PassCodeLogin() {
     sessionStorage.setItem(btoa('fullAccess'), btoa('true'));
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('x-api-key', API_KEY);
 
     const raw = JSON.stringify({
       body: JSON.stringify({
@@ -44,10 +46,7 @@ function PassCodeLogin() {
       mode: 'cors',
     };
 
-    fetch(
-      'https://w0516ks3hd.execute-api.ap-southeast-2.amazonaws.com/dev/get-user-data',
-      requestOptions
-    )
+    fetch(API_ENDPOINTS.GET_USER_DATA, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.warn('result', result);

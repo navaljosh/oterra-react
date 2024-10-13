@@ -23,6 +23,7 @@ import IntensityComponent from './IntensityComp';
 import SolutionComp from './SolutionComp';
 import Consumer from './Consumer';
 import ReactHtmlParser from 'react-html-parser';
+import { API_ENDPOINTS, API_KEY } from '../../api/api.constants';
 
 function AppFooter() {
   const fullAccess =
@@ -210,6 +211,7 @@ function AppFooter() {
   const checkApi = (callback) => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('x-api-key', API_KEY);
 
     const raw = JSON.stringify({
       body: '{"email":"test@example.com"}',
@@ -223,10 +225,7 @@ function AppFooter() {
       mode: 'cors',
     };
 
-    fetch(
-      'https://w0516ks3hd.execute-api.ap-southeast-2.amazonaws.com/dev/get-user-data',
-      requestOptions
-    )
+    fetch(API_ENDPOINTS.GET_USER_DATA, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const parsedData = JSON.parse(result?.body);
