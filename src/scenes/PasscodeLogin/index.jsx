@@ -12,7 +12,7 @@ import { API_ENDPOINTS, API_KEY } from '../../api/api.constants';
 function PassCodeLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('test@example.com');
-  const [passcode, setPasscode] = useState('1111');
+  const [passcode, setPasscode] = useState('Colorbynature');
   const [loading, setLoading] = useState(false);
   const disabled = !email.length || !passcode.length;
 
@@ -89,7 +89,7 @@ function PassCodeLogin() {
             style={{ opacity: disabled || loading ? 0.5 : 1 }}
             disabled={disabled || loading}
             onClick={() => {
-              if (passcode === atob('MTExMQ==')) {
+              if (passcode === atob('Q29sb3JieW5hdHVyZQ==')) {
                 checkEmail();
               }
             }}
