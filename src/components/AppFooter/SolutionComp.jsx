@@ -7,12 +7,12 @@ const getSoltionImage = (name) => {
 };
 
 export default function SolutionComp({
-  solutionData,
+  solutionData = [],
   setSelectedTab = () => {},
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const selected = solutionData[currentIndex];
-  const tabName = selected.name;
+  const tabName = selected?.name || '';
 
   return (
     <div className={styles.solution} id='infoContent'>

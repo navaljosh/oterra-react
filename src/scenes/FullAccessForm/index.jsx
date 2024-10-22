@@ -100,7 +100,6 @@ function FullAccessForm() {
           options={OPTIONS4}
           multiSelect={true}
           onSelect={(val) => {
-            console.warn('val', val);
             setDetails({
               ...details,
               ques4: val,
@@ -132,7 +131,6 @@ function FullAccessForm() {
           options={OPTIONS5}
           multiSelect={true}
           onSelect={(val) => {
-            console.warn('val', val);
             setDetails({
               ...details,
               ques5: val,
@@ -169,7 +167,6 @@ function FullAccessForm() {
           onClick={() => {
             navigate('/accessSent');
             localStorage.setItem(btoa('accessSent'), btoa('true'));
-            console.warn('userData details', details);
           }}
         >
           {getText('submit')}

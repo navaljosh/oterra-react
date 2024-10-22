@@ -13,9 +13,8 @@ import solutionS from '../../assets/Footer/solutionS.png';
 import downAnimate from '../../assets/downAnimate.gif';
 import emotionFooter from '../../assets/Footer/emotionFooter.png';
 import { getText } from '../../languageTexts';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { isObjectEmpty } from '../../scenes/MainScene';
-import { ACTION_TYPES } from '../../store/actionTypes';
 import { useNavigate } from 'react-router-dom';
 import { getContentForAppVariant } from './getContent';
 import { EmoteLangImageServer } from './imageServer';
@@ -23,9 +22,8 @@ import IntensityComponent from './IntensityComp';
 import SolutionComp from './SolutionComp';
 import Consumer from './Consumer';
 import ReactHtmlParser from 'react-html-parser';
-import { API_ENDPOINTS, API_KEY } from '../../api/api.constants';
 
-function AppFooter() {
+function AppFooter({ selectedTab, setSelectedTab, setShowTip }) {
   const fullAccess =
     useSelector((appReducer) => appReducer.fullAccess) || false;
   const appSelected =
@@ -34,27 +32,22 @@ function AppFooter() {
   const showMenu = useSelector((appReducer) => appReducer.showMenu) || false;
   const [activeElement, setActiveElement] = useState(null);
   const selectedApp = useSelector((appReducer) => appReducer.selectedApp);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { variant = 'yellow' } =
-    useSelector((appReducer) => appReducer.awsUserData) || 'yellow';
 
-  const { name: appName } = selectedApp || {};
+  const { name: appName = '' } = selectedApp || {};
+  const [variant, setVariant] = useState('yellow');
 
   const content =
     getContentForAppVariant({
       variant,
       appName,
     }) || {};
-  console.warn('getContentForAppVariant', content);
 
-  const [selectedTab, setSelectedTab] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
 
   useLayoutEffect(() => {
     if (selectedTab) {
       const scrollHeight = document.getElementById('infoContent')?.scrollHeight;
-      console.warn('scrollHeight', scrollHeight, scrollHeight > 232);
       setShowScroll(scrollHeight > 232);
     }
   }, [selectedTab]);
@@ -189,6 +182,21 @@ function AppFooter() {
   ];
 
   useEffect(() => {
+    const handleMessage = (event) => {
+      if (typeof event.data === 'object') return;
+      console.log('Received data from iframe:', event);
+      if (variant !== event.data) {
+        setSelectedTab({});
+        setVariant(event.data);
+      }
+    };
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [setSelectedTab, variant]);
+
+  useEffect(() => {
     if (activeElement) {
       const timer = setTimeout(() => {
         setActiveElement(null);
@@ -208,36 +216,38 @@ function AppFooter() {
     );
   };
 
-  const checkApi = (callback) => {
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('x-api-key', API_KEY);
+  // const checkApi = (callback) => {
+  //   const myHeaders = new Headers();
+  //   myHeaders.append('Content-Type', 'application/json');
+  //   myHeaders.append('x-api-key', API_KEY);
 
-    const raw = JSON.stringify({
-      body: '{"email":"test@example.com"}',
-    });
+  //   const raw = JSON.stringify({
+  //     body: '{"email":"test@example.com"}',
+  //   });
 
-    const requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-      mode: 'cors',
-    };
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: 'follow',
+  //     mode: 'cors',
+  //   };
 
-    fetch(API_ENDPOINTS.GET_USER_DATA, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        const parsedData = JSON.parse(result?.body);
-        dispatch({
-          type: ACTION_TYPES.AWS_USER_DATA,
-          payload: parsedData,
-        });
-        // setColor(parsedData?.variant);
-        callback();
-      })
-      .catch((error) => console.error(error));
-  };
+  //   fetch(API_ENDPOINTS.GET_USER_DATA, requestOptions)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       const parsedData = result?.body;
+  //       dispatch({
+  //         type: ACTION_TYPES.AWS_USER_DATA,
+  //         payload: parsedData,
+  //       });
+  //       // setColor(parsedData?.variant);
+  //       if (result.statusCode) {
+  //         callback();
+  //       }
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
 
   const callbackFn = (entry, index) => {
     if (appSelected) {
@@ -251,21 +261,23 @@ function AppFooter() {
         setSelectedTab({});
         togglePseudo(`footerOption${index}`);
       }
+    } else {
+      setShowTip(true);
     }
   };
 
   return (
     <>
-      <div
+      {/* <div
         className={styles.overlay}
         style={{
           display: !isObjectEmpty(selectedTab) ? 'block' : 'none',
         }}
-        onClick={() => {
+        onClick={(e) => {
           setSelectedTab({});
         }}
-      ></div>
-      <div className={styles.appFooter}>
+      ></div> */}
+      <div className={styles.appFooter} id='appFooter'>
         {!isObjectEmpty(selectedTab) ? (
           <div
             className={styles.footerContent}
@@ -299,9 +311,10 @@ function AppFooter() {
                   if (
                     entry?.needVariant &&
                     entry.active &&
+                    selectedTab &&
                     entry.name !== selectedTab.name
                   ) {
-                    // checkApi(callbackFn(entry, index));
+                    // checkApi(() => callbackFn(entry, index));
                     callbackFn(entry, index);
                   } else {
                     callbackFn(entry, index);

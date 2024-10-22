@@ -93,7 +93,6 @@ function CustomSelectBox({
               return (
                 <div
                   onClick={() => {
-                    console.warn('entry', entry);
                     if (!open) {
                       setOpen(!open);
                     } else {

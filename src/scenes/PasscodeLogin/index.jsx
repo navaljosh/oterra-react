@@ -49,10 +49,30 @@ function PassCodeLogin() {
     fetch(API_ENDPOINTS.GET_USER_DATA, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.warn('result', result);
         if (result.statusCode === 200) {
-          dispatch(loginUser({ user: result?.body }));
-          navigate('/app');
+          const {
+            company = '',
+            country = '',
+            email = '',
+            interested_apps = '',
+            name = '',
+            phone = '',
+            position = '',
+          } = result?.body || {};
+          if (
+            !company ||
+            !country ||
+            !email ||
+            !interested_apps ||
+            !name ||
+            !phone ||
+            !position
+          ) {
+            navigate('/details', { state: { email } });
+          } else {
+            dispatch(loginUser({ user: result?.body }));
+            navigate('/app');
+          }
         } else {
           navigate('/details', { state: { email } });
         }

@@ -6,26 +6,66 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import CustomInput from '../../components/CustomInput';
 import CustomSelectBox from '../../components/CustomSelectBox';
 import { useDispatch } from 'react-redux';
-// import { ACTION_TYPES } from '../../store/actionTypes';
 import { loginUser } from '../../store/actions';
+import { API_ENDPOINTS, API_KEY } from '../../api/api.constants';
 
 function DetailsForm() {
   const navigate = useNavigate();
   const params = useLocation();
   const [agreed, setAgreed] = useState(false);
+  const [saving, setSaving] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const [userData, setUserData] = useState({
     name: 'Akash',
-    email: params?.state?.email || "test@gmail.com",
+    email: params?.state?.email || 'test@gmail.com',
     phone: '+45 9465498988',
     position: 'Developer',
     company: 'NXT Interactive',
     country: 'Singapore',
-    apps: ['Pet Food'],
+    apps: ['none'],
   });
   const dispatch = useDispatch();
+
+  const saveDetails = () => {
+    setSaving(true);
+    const myHeaders = new Headers();
+    myHeaders.append('x-api-key', API_KEY);
+    myHeaders.append('Content-Type', 'application/json');
+
+    const raw = JSON.stringify({
+      body: {
+        email: userData?.email,
+        name: userData?.name,
+        phone: userData?.phone,
+        position: userData?.position,
+        company: userData?.company,
+        country: userData?.country,
+        interested_apps: userData?.apps,
+      },
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+
+    fetch(API_ENDPOINTS.UPDATE_DATA, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        dispatch(loginUser({ user: userData }));
+        navigate('/app');
+        setSaving(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setSaving(false);
+      });
+  };
   return (
     <>
       <BackHeader />
@@ -119,16 +159,12 @@ function DetailsForm() {
         </div>
         <div className={styles.footer}>
           <button
-            disabled={!agreed}
+            disabled={!agreed || saving}
             onClick={() => {
-              console.warn('userData', userData);
-              // navigate('/app')
-              // @TODO Add API call to save data to DB
-              dispatch(loginUser({ user: userData }));
-              navigate('/app');
+              saveDetails();
             }}
             style={{
-              opacity: agreed ? 1 : 0.5,
+              opacity: agreed || saving ? 1 : 0.5,
             }}
           >
             {getText('submit')}

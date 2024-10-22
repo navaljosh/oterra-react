@@ -16,6 +16,8 @@ export default function IntensityComponent({
     setMinH(document.getElementById('intensityInfo')?.clientHeight);
   }, []);
 
+  const [icon0, icon1] = content?.intensityIcons || [];
+
   return (
     <div className={styles.infoContent} id='infoContent'>
       <div className={styles.header}>{getText('color_intensity')}</div>
@@ -37,7 +39,7 @@ export default function IntensityComponent({
                 outline: intensity ? `2px solid #E34125` : 'none',
               }}
             >
-              <img src={content?.intensityIcons[0]} alt={`bright-${appName}`} />
+              <img src={icon0} alt={`bright-${appName}`} />
             </div>
             <div
               className={styles.intensityName}
@@ -56,7 +58,7 @@ export default function IntensityComponent({
                 outline: !intensity ? `2px solid #E34125` : 'none',
               }}
             >
-              <img src={content?.intensityIcons[1]} alt={`bright-${appName}`} />
+              <img src={icon1} alt={`bright-${appName}`} />
             </div>
             <div
               className={styles.intensityName}

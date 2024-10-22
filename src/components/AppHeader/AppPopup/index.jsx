@@ -21,74 +21,74 @@ const APPS = [
     displayName: 'Burgers',
     icon: burger_bun,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8',
+      `https://studio.onirix.com/projects/47121bef41674ef39c8d8986648cd77d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'dumpling',
     displayName: 'Dumplings',
     icon: dumpling,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/4d1103e872a54f03bbaa94bd02dca26a/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'puff_snacks',
     displayName: 'Puffs',
     icon: puff_snacks,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/617fd8874c8a4add94f0ed443830ad71/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'noodle',
     displayName: 'Noodles',
     icon: noodle,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/ec93933fa3b9433090da70eb19a990bb/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'burger_sauce',
     displayName: 'Sauce',
     icon: burger_sauce,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/0762c4918bc44536bd61f9635144bcea/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'salad_dressing',
     displayName: 'Salad',
     icon: salad_dressing,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/2c3253648dbd41f9a2e9c24743782ede/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'savory_dip',
     displayName: 'Dips',
     icon: savory_dip,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'nugget',
     displayName: 'Nuggets',
     icon: nugget,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/2ca729059bf54eb196de91df669347ec/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'potato_chip',
     displayName: 'Chips',
     icon: potato_chip,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/8466a8ef15f6440db671161e627af27d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
   {
     name: 'french_fries',
     displayName: 'Fries',
     icon: french_fries,
     arLink:
-      'https://studio.onirix.com/projects/1b076167888540059377b1dd91e5f83d/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJwcm9qZWN0SWQiOjg2MzI1LCJyb2xlIjozLCJpYXQiOjE3MjQwMjMwOTF9.ccZJqbtGSgGSx2AZwHyi5bLCyb3CRNwvY9kiGnDKBv8&background=alpha&preview=true&hide_controls=true&ar_button=false',
+      `https://studio.onirix.com/projects/03fb7c60355e40d293af4e0be9e6f9d6/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQyMzI0LCJyb2xlIjoxLCJpYXQiOjE3MjkyMzY3Mjd9.DSusaNFMJmJXiBaPTfJtp-DpnGwBfGPMI9ecMvG7ZyQ&email=${localStorage.getItem('loggedUserId')}`,
   },
 ];
 
-function AppPopup({ handleClose }) {
+function AppPopup({ handleClose, setLoaded }) {
   const dispatch = useDispatch();
   return (
     <div className={styles.appPopup}>
@@ -111,6 +111,7 @@ function AppPopup({ handleClose }) {
                 // @TODO AKASH API
                 // updateVariantColor('yellow')
                 handleClose();
+                setLoaded(false)
               }}
             >
               <div className={styles.appIcon}>

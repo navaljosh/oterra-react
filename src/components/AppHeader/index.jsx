@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import info from '../../assets/info.png';
 import menu from '../../assets/menu.png';
@@ -8,10 +8,9 @@ import AppPopup from './AppPopup';
 import { useDispatch, useSelector } from 'react-redux';
 import { ACTION_TYPES } from '../../store/actionTypes';
 
-function AppHeader() {
+function AppHeader({ setSelectedTab, showTip, setShowTip, setLoaded }) {
   const showMenu = useSelector((appReducer) => appReducer.showMenu) || false;
   const [open, setOpen] = useState(!showMenu);
-  const [showTip, setShowTip] = useState(false);
   const appSelected =
     useSelector((appReducer) => appReducer.appSelected) || false;
   const handleClose = () => setOpen(false);
@@ -20,7 +19,7 @@ function AppHeader() {
   useEffect(() => {
     const { pathname = '' } = window.location || {};
     setShowTip(!appSelected && pathname !== '/lang' && !open);
-  }, [appSelected, open]);
+  }, [appSelected, open, setShowTip]);
 
   useEffect(() => {
     if (appSelected) {
@@ -35,7 +34,10 @@ function AppHeader() {
         </div>
         <div
           className={styles.appBtn}
-          onClick={() => setOpen(!open)}
+          onClick={() => {
+            setSelectedTab({});
+            setOpen(!open);
+          }}
           style={{
             background: open ? '#e34125' : '#fff',
             color: open ? '#fff' : '#e34125',
@@ -61,14 +63,20 @@ function AppHeader() {
         <div
           className={styles.right}
           onClick={() => {
+            setSelectedTab({});
             dispatch({
               type: ACTION_TYPES.SHOW_MENU,
               payload: true,
             });
             dispatch({
+              type: ACTION_TYPES.APP_SELECTED,
+              payload: false,
+            });
+            dispatch({
               type: ACTION_TYPES.SELECTED_APP,
               payload: {},
             });
+            setLoaded(false)
           }}
         >
           <img src={menu} alt='menu' />
@@ -81,7 +89,7 @@ function AppHeader() {
         onClose={handleClose}
       >
         <div className='modal'>
-          <AppPopup handleClose={handleClose} />
+          <AppPopup handleClose={handleClose} setLoaded={setLoaded}/>
         </div>
       </Popup>
     </>
